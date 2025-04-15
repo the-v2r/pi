@@ -1,98 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Compiler</title>	
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Python Compiler</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.23.4/ace.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.23.4/ext-language_tools.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
     <style>
-        h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        #editor {
-            height: 300px;
-            width: 100%;
-            border: 1px solid #ddd;
-            line-height: 1.5;
-        }
-        pre {
-            background-color: #282c34;
-            color: #abb2bf;
-            padding: 15px;
-            border: 1px solid #444;
-            border-radius: 4px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            overflow: auto;
-        }
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      #editor {
+        height: 300px;
+        width: 100%;
+        border: 1px solid #ddd;
+        line-height: 1.5;
+      }
+      pre {
+        background-color: #282c34;
+        color: #abb2bf;
+        padding: 15px;
+        border: 1px solid #444;
+        border-radius: 4px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        overflow: auto;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Python Online Compiler</h1>
     <select id="themeSelector" onchange="changeTheme()">
-        <option value="monokai">Monokai</option>
-        <option value="github">GitHub</option>
-        <option value="dracula">Dracula</option>
-        <option value="twilight">Twilight</option>
-        <option value="solarized_dark">Solarized Dark</option>
-        <option value="solarized_light">Solarized Light</option>
-        <option value="cobalt">Cobalt</option>
-        <option value="chrome">Chrome</option>
-        <option value="gruvbox">Gruvbox</option>
-        <option value="xcode">XCode</option>
+      <option value="monokai">Monokai</option>
+      <option value="github">GitHub</option>
+      <option value="dracula">Dracula</option>
+      <option value="twilight">Twilight</option>
+      <option value="solarized_dark">Solarized Dark</option>
+      <option value="solarized_light">Solarized Light</option>
+      <option value="cobalt">Cobalt</option>
+      <option value="chrome">Chrome</option>
+      <option value="gruvbox">Gruvbox</option>
+      <option value="xcode">XCode</option>
     </select>
     <input type="file" id="fileInput" accept=".py" />
-    <div id="editor"># Write your code here or Upload a file
-print("Hello World")</div>
+    <div id="editor"># Write your code here or Upload a file</div>
     <button onclick="runCode()">Run Code</button>
     <pre id="output"></pre>
-    <script>
-        const editor = ace.edit("editor");
-        editor.session.setMode("ace/mode/python");
-        editor.setTheme("ace/theme/github")
-        editor.setOptions({
-            enableBasicAutocompletion: true,
-            enableLiveAutocompletion: true,
-            enableSnippets: true
-        })
-
-        function changeTheme() {
-            input = document.getElementById("themeSelector").value.trim()
-            if (input) {
-                try {
-                    editor.setTheme("ace/theme/"+input)
-                } catch(e) {
-                    alert("Invalid theme name!")
-                }
-            }
-        }
-
-        document.getElementById("fileInput").addEventListener("change", function() {
-            const file = this.files[0]
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    editor.setValue(e.target.result, -1);
-                };
-                reader.readAsText(file)
-            }
-        })
-
-        async function runCode() {
-            const code = editor.getValue();
-            const response = await fetch('/execute', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ code })
-            });
-
-            const result = await response.json();
-            document.getElementById('output').textContent = result.output || result.error;
-        }        
-    </script>
-</body>
+    <script src="main.js"></script>
+  </body>
 </html>
