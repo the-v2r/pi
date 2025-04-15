@@ -4,12 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python Compiler</title>	
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.23.4/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.23.4/ext-language_tools.min.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
         h1 {
             font-size: 24px;
             margin-bottom: 20px;
@@ -18,25 +15,9 @@
             height: 300px;
             width: 100%;
             border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
             line-height: 1.5;
         }
-        button {
-            font-size: 16px;
-            padding: 10px 20px;
-            margin-top: 10px;
-            cursor: pointer;
-            border: none;
-            border-radius: 4px;
-            background-color: #007bff;
-            color: white;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
         pre {
-            font-size: 14px;
             background-color: #282c34;
             color: #abb2bf;
             padding: 15px;
@@ -71,6 +52,11 @@ print("Hello World")</div>
         const editor = ace.edit("editor");
         editor.session.setMode("ace/mode/python");
         editor.setTheme("ace/theme/github")
+        editor.setOptions({
+            enableBasicAutocompletion: true,
+            enableLiveAutocompletion: true,
+            enableSnippets: true
+        })
 
         function changeTheme() {
             input = document.getElementById("themeSelector").value.trim()
