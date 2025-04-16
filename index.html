@@ -74,24 +74,42 @@
                 <option value="dracula">dracula</option>
                 <option value="gruvbox_light_hard">gruvbox_light_hard</option>
             </select>
-            <input type="file" id="fileInput" accept=".py" />
             <label>
-                <input
-                    type="checkbox"
-                    id="syntaxCheck"
-                    checked
-                    onchange="toggleSyntaxCheck()"
-                />
+                <input type="checkbox" id="syntaxCheck" checked />
                 Syntax check
             </label>
-            <!-- prettier-ignore -->
-            <div id="editor" class="edit"># Write your code here or Upload a file</div>
-            <!-- prettier-ignore -->
+            <label>
+                <input type="checkbox" id="wordWrap" />
+                Word wrapping
+            </label>
+            <label>
+                <input type="checkbox" id="readOnly" />
+                Read-only mode
+            </label>
+            <label>
+                <input type="checkbox" id="showInvisible" />
+                Show White spaces
+            </label>
+            <label>
+                <input type="checkbox" id="showGutter" />
+                Show line number
+            </label>
+            <div id="topbar">
+                <label for="file-input">📂 Open File</label>
+                <input type="file" id="file-input" multiple />
+                <button id="save-button">💾 Save</button>
+                <div id="tabs"></div>
+            </div>
+            <div id="editor" class="edit hidden"></div>
+            <div id="lineNumber"></div>
+            <div id="cursorPosition"></div>
+            <button id="startSearchBtn">Find</button>
+            <button id="startReplaceBtn">Replace</button>
             <button onclick="runCode()">Run Code</button>
             <pre id="output"></pre>
-            <div id="errorPanel"></div>
         </div>
         <script src="main.js"></script>
         <script src="face.js"></script>
+        <script src="tab.js"></script>
     </body>
 </html>
