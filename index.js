@@ -1,4 +1,10 @@
-const { ipcMain, dialog, app, BrowserWindow } = require("electron");
+const {
+    ipcMain,
+    dialog,
+    app,
+    BrowserWindow,
+    globalShortcut,
+} = require("electron");
 const fs = require("fs");
 const path = require("path");
 
