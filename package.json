@@ -1,25 +1,28 @@
 {
-  "name": "pi",
-  "version": "1.0.0",
-  "description": "A lightweight Python IDE",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/the-v2r/pyjudge.git"
-  },
-  "author": "the-v2r",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/the-v2r/pyjudge/issues"
-  },
-  "homepage": "https://github.com/the-v2r/pyjudge#readme",
-  "dependencies": {
-    "yarn": "^1.22.22"
-  },
-  "devDependencies": {
-    "electron": "^35.1.5"
-  }
+	"name": "pi",
+	"version": "1.0.0",
+	"description": "A lightweight Python IDE",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon --watch index.js --exec electron .",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/the-v2r/pyjudge.git"
+	},
+	"author": "the-v2r",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/the-v2r/pyjudge/issues"
+	},
+	"homepage": "https://github.com/the-v2r/pyjudge#readme",
+	"dependencies": {
+		"yarn": "^1.22.22"
+	},
+	"devDependencies": {
+		"electron": "^35.1.5",
+		"electron-reload": "^2.0.0-alpha.1",
+		"nodemon": "^3.1.9"
+	}
 }
