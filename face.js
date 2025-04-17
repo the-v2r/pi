@@ -1,89 +1,89 @@
-let percent = 0;
-const progressBar = document.getElementById("progress-bar");
-const progressText = document.getElementById("progress-text");
+let percent = 0
+const progressBar = document.getElementById('progress-bar')
+const progressText = document.getElementById('progress-text')
 
 const simulateLoading = setInterval(() => {
-    percent += Math.floor(Math.random() * 5 + 1);
-    if (percent >= 100) {
-        percent = 100;
-        clearInterval(simulateLoading);
+	percent += Math.floor(Math.random() * 5 + 1)
+	if (percent >= 100) {
+		percent = 100
+		clearInterval(simulateLoading)
 
-        document.getElementById("loader").style.transition = "opacity 0.5s";
-        document.getElementById("loader").style.opacity = 0;
-        setTimeout(() => {
-            document.getElementById("loader").style.display = "none";
-            document.getElementById("main").style.display = "block";
-        }, 500);
-    }
+		document.getElementById('loader').style.transition = 'opacity 0.5s'
+		document.getElementById('loader').style.opacity = 0
+		setTimeout(() => {
+			document.getElementById('loader').style.display = 'none'
+			document.getElementById('main').style.display = 'block'
+		}, 500)
+	}
 
-    progressBar.style.width = percent + "%";
-    progressText.textContent = `Loading... ${percent}%`;
-}, 100);
+	progressBar.style.width = percent + '%'
+	progressText.textContent = `Loading... ${percent}%`
+}, 100)
 
 function changeTheme() {
-    const theme = document.getElementById("themeSelector").value;
-    editor.setTheme("ace/theme/" + theme);
+	const theme = document.getElementById('themeSelector').value
+	editor.setTheme('ace/theme/' + theme)
 }
 
-const toggleWordWrap = document.getElementById("wordWrap");
-toggleWordWrap.addEventListener("click", () => {
-    editor.session.setUseWrapMode(toggleWordWrap.checked);
-});
+const toggleWordWrap = document.getElementById('wordWrap')
+toggleWordWrap.addEventListener('click', () => {
+	editor.session.setUseWrapMode(toggleWordWrap.checked)
+})
 
-const toggleReadOnly = document.getElementById("readOnly");
-toggleReadOnly.addEventListener("click", () => {
-    editor.setReadOnly(toggleReadOnly.checked);
-});
+const toggleReadOnly = document.getElementById('readOnly')
+toggleReadOnly.addEventListener('click', () => {
+	editor.setReadOnly(toggleReadOnly.checked)
+})
 
-const lineNumber = document.getElementById("lineNumber");
-lineNumber.textContent = `Line: ${editor.session.getLength()}`;
-editor.addEventListener("change", () => {
-    lineNumber.textContent = `Line: ${editor.session.getLength()}`;
-});
+const lineNumber = document.getElementById('lineNumber')
+lineNumber.textContent = `Line: ${editor.session.getLength()}`
+editor.addEventListener('change', () => {
+	lineNumber.textContent = `Line: ${editor.session.getLength()}`
+})
 
-const cursorPositionDiv = document.getElementById("cursorPosition");
+const cursorPositionDiv = document.getElementById('cursorPosition')
 
 function updateStatus() {
-    const pos = editor.getCursorPosition();
-    const sel = editor.session.getTextRange(editor.getSelectionRange());
-    const lines = sel.split("\n").length;
-    const chars = sel.length;
+	const pos = editor.getCursorPosition()
+	const sel = editor.session.getTextRange(editor.getSelectionRange())
+	const lines = sel.split('\n').length
+	const chars = sel.length
 
-    let statusText = `Ln ${pos.row + 1}, Col ${pos.column + 1}`;
+	let statusText = `Ln ${pos.row + 1}, Col ${pos.column + 1}`
 
-    if (chars > 0) {
-        statusText += ` (${chars} selected`;
-        if (lines > 1) {
-            statusText += ` over ${lines} lines)`;
-        } else {
-            statusText += `)`;
-        }
-    }
+	if (chars > 0) {
+		statusText += ` (${chars} selected`
+		if (lines > 1) {
+			statusText += ` over ${lines} lines)`
+		} else {
+			statusText += `)`
+		}
+	}
 
-    cursorPositionDiv.textContent = statusText;
+	cursorPositionDiv.textContent = statusText
 }
 
-editor.getSelection().on("changeCursor", updateStatus);
-editor.getSelection().on("changeSelection", updateStatus);
+editor.getSelection().on('changeCursor', updateStatus)
+editor.getSelection().on('changeSelection', updateStatus)
 
-updateStatus();
+updateStatus()
 
-const startSearchBtn = document.getElementById("startSearchBtn");
-startSearchBtn.addEventListener("click", () => {
-    editor.execCommand("find");
-});
+const startSearchBtn = document.getElementById('startSearchBtn')
+startSearchBtn.addEventListener('click', () => {
+	editor.execCommand('find')
+})
 
-const startReplaceBtn = document.getElementById("startReplaceBtn");
-startReplaceBtn.addEventListener("click", () => {
-    editor.execCommand("replace");
-});
+const startReplaceBtn = document.getElementById('startReplaceBtn')
+startReplaceBtn.addEventListener('click', () => {
+	editor.execCommand('replace')
+})
 
-const showInvisible = document.getElementById("showInvisible");
-showInvisible.addEventListener("click", () => {
-    editor.setOption("showInvisibles", showInvisible.checked);
-});
+const showInvisible = document.getElementById('showInvisible')
+showInvisible.addEventListener('click', () => {
+	editor.setOption('showInvisibles', showInvisible.checked)
+})
 
-const showGutter = document.getElementById("showGutter");
-showGutter.addEventListener("click", () => {
-    editor.renderer.setShowGutter(showGutter.checked);
-});
+const showGutter = document.getElementById('showGutter')
+showGutter.addEventListener('click', () => {
+	editor.renderer.setShowGutter(showGutter.checked)
+})
