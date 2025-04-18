@@ -20,7 +20,7 @@ app.whenReady().then(() => {
         width: 1600,
         height: 1000,
         webPreferences: {
-            nodeIntegration: false,
+            nodeIntegration: true,
             contextIsolation: true,
             preload: path.join(__dirname, "preload.js"),
         },
@@ -29,6 +29,8 @@ app.whenReady().then(() => {
     mainWindow.loadFile("index.html");
     mainWindow.webContents.openDevTools();
 });
+
+require("child_process").fork(path.join(__dirname, "server.js"));
 
 ipcMain.handle("dialog:openFile", async () => {
     const { canceled, filePaths } = await dialog.showOpenDialog({

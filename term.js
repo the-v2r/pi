@@ -1,0 +1,26 @@
+const term = new Terminal({
+    cursorBlink: true,
+    fontFamily: "monospace",
+    fontSize: 12,
+    theme: {},
+    cursorStyle: "block",
+});
+
+term.open(document.getElementById("terminal"));
+
+const socket = io("http://localhost:3001");
+
+term.onData((data) => socket.emit("input", data));
+socket.on("output", (data) => term.write(data));
+
+window.addEventListener("resize", () => {
+    socket.emit("resize", {
+        cols: term.cols,
+        rows: term.rows,
+    });
+});
+
+socket.emit("resize", {
+    cols: term.cols,
+    rows: term.rows,
+});
