@@ -75,3 +75,8 @@ label[for="file-input"] {
 [hidden] {
     display: none;
 }
+
+#command {
+    padding: 0;
+    border: none;
+}

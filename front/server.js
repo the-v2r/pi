@@ -10,10 +10,12 @@ const io = new Server(server);
 
 app.use(express.static(path.join(__dirname, "public")));
 
+let ptyProcess;
+
 io.on("connection", (socket) => {
     const shell = process.platform === "win32" ? "cmd.exe" : "bash";
 
-    const ptyProcess = pty.spawn(shell, [], {
+    ptyProcess = pty.spawn(shell, [], {
         name: "xterm-color",
         cols: 200,
         rows: 24,

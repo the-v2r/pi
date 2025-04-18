@@ -2,7 +2,7 @@ ace.require("ace/range");
 
 const editor = ace.edit("editor");
 const output = document.getElementById("output");
-editor.session.setMode("ace/mode/python");
+editor.session.setMode("ace/mode/text");
 editor.setTheme("ace/theme/github");
 editor.session.setUseWorker(true);
 editor.setOptions({
@@ -10,3 +10,5 @@ editor.setOptions({
     enableLiveAutocompletion: true,
     enableSnippets: true,
 });
+
+editor.focus();

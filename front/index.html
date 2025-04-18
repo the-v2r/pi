@@ -14,12 +14,6 @@
         <link rel="stylesheet" href="./style/style.css" />
     </head>
     <body>
-        <div id="loader">
-            <div class="progress-bar-container">
-                <div class="progress-bar" id="progress-bar"></div>
-            </div>
-            <p id="progress-text">Loading... 0%</p>
-        </div>
         <div id="main">
             <h1>Python Online Compiler</h1>
             <select id="themeSelector" onchange="changeTheme()">
@@ -101,15 +95,27 @@
                 <pre id="lastModified"></pre>
             </div>
             <!-- prettier-ignore -->
-            <div id="editor" class="edit"># ╔════════════════════════════════════════════════════════════════╗
-# ║ This editor is uneditable unless a file is chosen. Open a file ║
-# ║ to edit it by hitting Ctrl+O or click the 'Open' button above. ║
-# ╚════════════════════════════════════════════════════════════════╝</div>
+            <div id="editor" class="edit">╔════════════════════════════════════════════════════════════════╗
+║ This editor is uneditable unless a file is chosen. Open a file ║
+║ to edit it by hitting Ctrl+O or click the 'Open' button above. ║
+╚════════════════════════════════════════════════════════════════╝</div>
             <div id="lineNumber"></div>
             <div id="cursorPosition"></div>
+            <div id="mode">[STANDBY]</div>
+            <div id="command_container">
+                <span id="prompt"></span>
+                <input type="text" id="command" />
+            </div>
             <button id="startSearchBtn">Find</button>
             <button id="startReplaceBtn">Replace</button>
             <button id="executeCodeBtn" disabled>Run Code</button>
+            <input
+                type="text"
+                id="pythonType"
+                disabled
+                placeholder="Python command"
+                value="python3"
+            />
             <input type="checkbox" id="toggleTermBtn" />Terminal
             <pre id="output"></pre>
             <div id="terminal_container" hidden>
@@ -121,5 +127,7 @@
         <script src="./script/face.js"></script>
         <script src="./script/file.js"></script>
         <script src="./script/term.js"></script>
+        <script src="./script/execute.js"></script>
+        <script src="./script/command.js"></script>
     </body>
 </html>

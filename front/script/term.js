@@ -28,28 +28,39 @@ socket.emit("resize", {
 // button
 const termBtn = document.getElementById("toggleTermBtn");
 const termCont = document.getElementById("terminal_container");
-termBtn.addEventListener("click", () => {
+
+function openTerm() {
+    termCont.removeAttribute("hidden");
+    term.focus();
+    termBtn.checked = true;
+}
+
+function closeTerm() {
+    termCont.setAttribute("hidden", "");
+    editor.focus();
+    termBtn.checked = false;
+}
+
+function handleTerm() {
     if (termBtn.checked == true) {
-        termCont.removeAttribute("hidden");
+        openTerm();
     } else {
-        termCont.setAttribute("hidden", "");
+        closeTerm();
     }
+}
+
+termBtn.addEventListener("click", () => {
+    handleTerm();
 });
 
 document.addEventListener("keydown", (e) => {
     if (e.ctrlKey && e.key == "t") {
-        termBtn.checked = true;
-        termCont.removeAttribute("hidden");
-        term.focus();
+        openTerm();
     }
 });
 
 term.attachCustomKeyEventHandler((e) => {
-    if (e.key == "Escape") {
-        termBtn.checked = false;
-        termCont.setAttribute("hidden", "");
-        editor.focus();
-        return false;
+    if (e.ctrlKey && e.shiftKey && e.key == "A") {
+        closeTerm();
     }
-    return true;
 });
