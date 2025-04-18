@@ -24,15 +24,15 @@ app.whenReady().then(() => {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: true,
-            preload: path.join(__dirname, "./src/preload.js"),
+            preload: path.join(__dirname, "./front/preload.js"),
         },
     });
 
-    mainWindow.loadFile("./src/index.html");
+    mainWindow.loadFile("./front/index.html");
     mainWindow.webContents.openDevTools();
 });
 
-require("child_process").fork(path.join(__dirname, "server.js"));
+require("child_process").fork(path.join(__dirname, "./front/server.js"));
 
 ipcMain.handle("dialog:openFile", async () => {
     const { canceled, filePaths } = await dialog.showOpenDialog({
