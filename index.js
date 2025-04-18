@@ -20,14 +20,15 @@ app.whenReady().then(() => {
         width: 1600,
         height: 1000,
         autoHideMenuBar: true,
+        // frame: false,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: true,
-            preload: path.join(__dirname, "preload.js"),
+            preload: path.join(__dirname, "./src/preload.js"),
         },
     });
 
-    mainWindow.loadFile("index.html");
+    mainWindow.loadFile("./src/index.html");
     mainWindow.webContents.openDevTools();
 });
 
