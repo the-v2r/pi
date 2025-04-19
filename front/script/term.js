@@ -25,7 +25,6 @@ socket.emit("resize", {
     rows: term.rows,
 });
 
-// button
 const termBtn = document.getElementById("toggleTermBtn");
 const termCont = document.getElementById("terminal_container");
 
@@ -37,8 +36,14 @@ function openTerm() {
 
 function closeTerm() {
     termCont.setAttribute("hidden", "");
-    editor.focus();
     termBtn.checked = false;
+    if (readOnlyReadyState == true) {
+        console.log(123);
+        editor.setReadOnly(false);
+    } else {
+        editor.focus();
+        return;
+    }
 }
 
 function handleTerm() {
@@ -53,14 +58,8 @@ termBtn.addEventListener("click", () => {
     handleTerm();
 });
 
-document.addEventListener("keydown", (e) => {
-    if (e.ctrlKey && e.key == "t") {
-        openTerm();
-    }
-});
-
 term.attachCustomKeyEventHandler((e) => {
-    if (e.ctrlKey && e.shiftKey && e.key == "A") {
+    if (e.ctrlKey && e.key == "t") {
         closeTerm();
     }
 });

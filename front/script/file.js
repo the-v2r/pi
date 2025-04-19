@@ -17,7 +17,7 @@ const mode = document.getElementById("mode");
 let readOnlyReadyState = false;
 
 async function handleOpenBtn() {
-    const result = await window.electronAPI.openFile();
+    const result = await window.electronAPI.openFile((accept = ".py"));
     if (!result.canceled) {
         currentFilePath = result.filePath;
         editor.setValue(result.content);
@@ -54,6 +54,12 @@ async function handleSaveBtn() {
     fileName.innerText = `${currentFilePath}`;
     windowTtitle.innerText = `Pi - ${currentFilePath}`;
     mode.textContent = "[INSERT]";
+
+    cmd.value = "";
+    const now = new Date();
+    prompt.textContent = `Updated '${currentFilePath}': ${
+        lineNumber.textContent.split(": ")[1]
+    } line(s) written [${now.toLocaleString("en-GB")}]`;
 }
 
 uploadBtn.addEventListener("click", async () => {

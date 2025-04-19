@@ -4,7 +4,7 @@ let cmdFocus = false;
 
 document.addEventListener("keydown", (e) => {
     if (!editor.isFocused()) {
-        if (e.key == "i") {
+        if (e.ctrlKey && e.key == "i") {
             if (readOnlyReadyState == true) {
                 e.preventDefault();
                 editor.focus();
@@ -50,16 +50,86 @@ function toggleLineNumber() {
     }
 }
 
+function toggleWhiteSpace() {
+    if (showInvisible.checked == true) {
+        editor.setOption("showInvisibles", false);
+        showInvisible.checked = false;
+    } else {
+        editor.setOption("showInvisibles", true);
+        showInvisible.checked = true;
+    }
+}
+
+function togglewordwrap() {
+    if (toggleWordWrap.checked == true) {
+        editor.session.setUseWrapMode(false);
+        toggleWordWrap.checked = false;
+    } else {
+        editor.session.setUseWrapMode(true);
+        toggleWordWrap.checked = true;
+    }
+}
+
 function handleTerm(val) {
     let value = val.split(" ");
     switch (value[0]) {
-        case "set":
+        case "tog":
             switch (value[1]) {
-                case "number":
+                case "l":
                     toggleLineNumber();
+                    prompt.textContent = `LineNumber: ${showGutter.checked}`;
+                    cmd.value = "";
+                    break;
+                case "ws":
+                    toggleWhiteSpace();
+                    prompt.textContent = `WhiteSpace: ${showGutter.checked}`;
+                    cmd.value = "";
+                    break;
+                case "ww":
+                    togglewordwrap();
+                    prompt.textContent = `WordWrap: ${showGutter.checked}`;
+                    cmd.value = "";
+                    break;
+                default:
+                    prompt.textContent = `Unknown property for '${value[0]}': ${value[1]}`;
+                    cmd.value = "";
+                    break;
             }
+            break;
+        case "cl":
+            switch (value[1]) {
+                case "showall":
+                    editor.setValue("[COLOR LIST]");
+                    for (let i = 0; i <= themeList.length - 1; i++) {
+                        editor.session.insert(1, themeList[i]);
+                    }
+                    editor.focus();
+                    break;
+                case "set":
+                    if (themeList.includes(value[2])) {
+                        editor.setTheme(`ace/theme/${value[2]}`);
+                        editor.focus();
+                        if (readOnlyReadyState == true) {
+                            editor.setReadOnly(false);
+                        }
+                    } else {
+                        prompt.textContent = `Unknown theme: ${value[2]}`;
+                        cmd.value = "";
+                        editor.focus();
+                        if (readOnlyReadyState == true) {
+                            editor.setReadOnly(false);
+                        }
+                    }
+                    break;
+            }
+            break;
+        case "term":
+            openTerm();
+            break;
         default:
-            prompt.textContent = `Unknown command: `;
+            prompt.textContent = `Unknown command: ${value[0]}`;
+            cmd.value = "";
+            break;
     }
 }
 
