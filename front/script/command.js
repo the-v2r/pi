@@ -135,6 +135,12 @@ function handleTerm(val) {
         case "term":
             openTerm();
             break;
+        case "exec":
+            runPy();
+            break;
+        case "stdin":
+            stdin.value = value[1];
+            break;
         default:
             prompt.textContent = `Unknown command: ${value[0]}`;
             cmd.value = "";
