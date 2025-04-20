@@ -14,11 +14,7 @@
         <link rel="stylesheet" href="./style/style.css" />
     </head>
     <body>
-        <div class="toolbar">
-            <button id="min-btn">—</button>
-            <button id="max-btn">🗖</button>
-            <button id="close-btn">×</button>
-        </div>
+        <div class="toolbar"></div>
         <div id="main">
             <select id="themeSelector" onchange="changeTheme()"></select>
             <label>
@@ -73,6 +69,7 @@ When you open a file, the mode will be switched to '[INSERT]', press:
             <button id="startSearchBtn">Find</button>
             <button id="startReplaceBtn">Replace</button>
             <button id="executeCodeBtn" disabled>Run Code</button>
+            <textarea id="stdin"></textarea>
             <input
                 type="text"
                 id="pythonType"
@@ -81,7 +78,7 @@ When you open a file, the mode will be switched to '[INSERT]', press:
                 value="python3"
             />
             <input type="checkbox" id="toggleTermBtn" />Terminal
-            <pre id="output"></pre>
+            <textarea id="stdout"></textarea>
             <div id="terminal_container" hidden>
                 <div id="terminal"></div>
             </div>

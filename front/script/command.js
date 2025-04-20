@@ -109,6 +109,15 @@ function handleTerm(val) {
                     if (themeList.includes(value[2])) {
                         editor.setTheme(`ace/theme/${value[2]}`);
                         editor.focus();
+                        themeSelector
+                            .querySelectorAll("option")
+                            .forEach((a) => {
+                                a.removeAttribute("selected");
+                            });
+                        const activeTheme = themeSelector.querySelector(
+                            `option[value=${value[2]}]`
+                        );
+                        activeTheme.setAttribute("selected", "");
                         if (readOnlyReadyState == true) {
                             editor.setReadOnly(false);
                         }
@@ -150,6 +159,7 @@ cmd.addEventListener("keydown", (e) => {
             prompt.textContent = "";
             if (readOnlyReadyState == false) {
                 mode.textContent = "[STANDBY]";
+                editor.focus();
             } else {
                 mode.textContent = "[NORMAL]";
             }

@@ -7,6 +7,7 @@ const {
 } = require("electron");
 const fs = require("fs");
 const path = require("path");
+const { exec } = require("child_process");
 
 require("electron-reload")(__dirname, {
     electron: require(`${__dirname}/node_modules/electron`),
@@ -29,6 +30,34 @@ app.whenReady().then(() => {
 
     mainWindow.loadFile("./front/index.html");
     mainWindow.webContents.openDevTools();
+
+    ipcMain.handle(
+        "run-python",
+        async (_event, { pyData, pyP, pyIn, pyInF }) => {
+            try {
+                fs.writeFileSync(pyInF, pyIn);
+                const output = await new Promise((resolve, reject) => {
+                    exec(
+                        `${pyData} ${pyP} < ${pyInF}`,
+                        (error, stdout, stderr) => {
+                            if (error) {
+                                reject(`exec error: ${error}`);
+                                return;
+                            }
+                            if (stderr) {
+                                reject(`stderr: ${stderr}`);
+                                return;
+                            }
+                            resolve(stdout);
+                        }
+                    );
+                });
+                return output;
+            } catch (error) {
+                return error;
+            }
+        }
+    );
 });
 
 require("child_process").fork(path.join(__dirname, "./front/server.js"));

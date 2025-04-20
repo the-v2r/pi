@@ -46,16 +46,12 @@ function closeTerm() {
     }
 }
 
-function handleTerm() {
+termBtn.addEventListener("click", () => {
     if (termBtn.checked == true) {
         openTerm();
     } else {
         closeTerm();
     }
-}
-
-termBtn.addEventListener("click", () => {
-    handleTerm();
 });
 
 term.attachCustomKeyEventHandler((e) => {

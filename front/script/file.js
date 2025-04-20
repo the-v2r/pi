@@ -48,12 +48,18 @@ async function handleSaveBtn() {
     const content = editor.getValue();
     await window.electronAPI.saveFile({ filePath: currentFilePath, content });
 
-    editor.setReadOnly(false);
-    editor.focus();
+    if (editor.isFocused()) {
+        editor.setReadOnly(false);
+        editor.focus();
+        mode.textContent = "[INSERT]";
+    } else {
+        editor.setReadOnly(true);
+        editor.blur();
+        mode.textContent = "[NORMAL]";
+    }
 
     fileName.innerText = `${currentFilePath}`;
     windowTtitle.innerText = `Pi - ${currentFilePath}`;
-    mode.textContent = "[INSERT]";
 
     cmd.value = "";
     const now = new Date();
