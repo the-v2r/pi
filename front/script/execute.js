@@ -25,3 +25,13 @@ document
     .addEventListener("click", async () => {
         runPy();
     });
+
+document.addEventListener("keydown", (e) => {
+    if (e.key == "F5") {
+        if (readOnlyReadyState == false) {
+            window.alert("No file chosen!");
+        } else {
+            runPy();
+        }
+    }
+});

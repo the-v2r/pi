@@ -70,6 +70,11 @@ function togglewordwrap() {
     }
 }
 
+function writeCmd(text) {
+    prompt.textContent = text;
+    cmd.value = "";
+}
+
 function handleTerm(val) {
     let value = val.split(" ");
     switch (value[0]) {
@@ -77,22 +82,18 @@ function handleTerm(val) {
             switch (value[1]) {
                 case "l":
                     toggleLineNumber();
-                    prompt.textContent = `LineNumber: ${showGutter.checked}`;
-                    cmd.value = "";
+                    writeCmd(`LineNumber: ${showGutter.checked}`);
                     break;
                 case "ws":
                     toggleWhiteSpace();
-                    prompt.textContent = `WhiteSpace: ${showGutter.checked}`;
-                    cmd.value = "";
+                    writeCmd(`WhiteSpace: ${showGutter.checked}`);
                     break;
                 case "ww":
                     togglewordwrap();
-                    prompt.textContent = `WordWrap: ${showGutter.checked}`;
-                    cmd.value = "";
+                    writeCmd(`WordWrap: ${showGutter.checked}`);
                     break;
                 default:
-                    prompt.textContent = `Unknown property for '${value[0]}': ${value[1]}`;
-                    cmd.value = "";
+                    writeCmd(`Unknown property for '${value[0]}': ${value[1]}`);
                     break;
             }
             break;
@@ -121,9 +122,9 @@ function handleTerm(val) {
                         if (readOnlyReadyState == true) {
                             editor.setReadOnly(false);
                         }
+                        writeCmd(`Color '${value[2]}' set for editor`);
                     } else {
-                        prompt.textContent = `Unknown theme: ${value[2]}`;
-                        cmd.value = "";
+                        writeCmd(`Unknown theme: ${value[2]}`);
                         editor.focus();
                         if (readOnlyReadyState == true) {
                             editor.setReadOnly(false);
@@ -139,11 +140,41 @@ function handleTerm(val) {
             runPy();
             break;
         case "stdin":
-            stdin.value = value[1];
+            if (value[1][0] == "'" || value[1][0] == '"') {
+                value.shift();
+                let rawstd = value.join(" ");
+                let ostd = rawstd.slice(1, rawstd.length - 1);
+                document.getElementById("stdin").value = ostd;
+                writeCmd("`Value ${rawstd} set for stdin`");
+            } else {
+                switch (value[1]) {
+                    case "clear":
+                        document.getElementById("stdin").value = "";
+                        writeCmd("Stdin cleared!");
+                    default:
+                        break;
+                }
+            }
+            break;
+        case "w":
+            handleSaveBtn();
+            break;
+        case "q":
+            if (isSaved == false) {
+                writeCmd("Save the file before quitting!");
+            } else {
+                window.close();
+            }
+            break;
+        case "wq":
+            handleSaveBtn();
+            window.close();
+            break;
+        case "q!":
+            window.close();
             break;
         default:
-            prompt.textContent = `Unknown command: ${value[0]}`;
-            cmd.value = "";
+            writeCmd(`Unknown command: ${value[0]}`);
             break;
     }
 }
@@ -161,8 +192,7 @@ cmd.addEventListener("keydown", (e) => {
         }
         if (e.key == "Escape") {
             cmd.blur();
-            cmd.value = "";
-            prompt.textContent = "";
+            writeCmd("");
             if (readOnlyReadyState == false) {
                 mode.textContent = "[STANDBY]";
                 editor.focus();

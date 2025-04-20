@@ -15,6 +15,7 @@ const executeCodeBtn = document.getElementById("executeCodeBtn");
 const mode = document.getElementById("mode");
 
 let readOnlyReadyState = false;
+let isSaved;
 
 async function handleOpenBtn() {
     const result = await window.electronAPI.openFile((accept = ".py"));
@@ -33,6 +34,7 @@ async function handleOpenBtn() {
     editor.on("change", () => {
         fileName.innerText = `${currentFilePath}*`;
         windowTtitle.innerText = `Pi - ${currentFilePath}*`;
+        isSaved = false;
     });
     pythonType.disabled = false;
     executeCodeBtn.disabled = false;
@@ -61,11 +63,13 @@ async function handleSaveBtn() {
     fileName.innerText = `${currentFilePath}`;
     windowTtitle.innerText = `Pi - ${currentFilePath}`;
 
-    cmd.value = "";
     const now = new Date();
-    prompt.textContent = `Updated '${currentFilePath}': ${
-        lineNumber.textContent.split(": ")[1]
-    } line(s) written [${now.toLocaleString("en-GB")}]`;
+    writeCmd(
+        `Updated '${currentFilePath}': ${
+            lineNumber.textContent.split(": ")[1]
+        } line(s) written [${now.toLocaleString("en-GB")}]`
+    );
+    isSaved = true;
 }
 
 uploadBtn.addEventListener("click", async () => {

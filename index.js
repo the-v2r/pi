@@ -17,6 +17,10 @@ require("electron-reload")(__dirname, {
 let mainWindow;
 
 app.whenReady().then(() => {
+    const args = process.argv.slice(1);
+    const fileP = args[0];
+
+    console.log(fileP);
     mainWindow = new BrowserWindow({
         width: 1600,
         height: 1000,
@@ -52,6 +56,7 @@ app.whenReady().then(() => {
                         }
                     );
                 });
+                fs.unlinkSync(pyInF);
                 return output;
             } catch (error) {
                 return error;
