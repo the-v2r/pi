@@ -2,10 +2,18 @@ const pyType = document.getElementById("pythonType").value;
 const out = document.getElementById("stdout");
 
 async function runPy() {
+    // const inp = document.getElementById("stdin").value;
+    // const inpP = currentFilePath.split("/");
+    // let ninpP = inpP.pop();
+    // let inpF = inpP.join("/") + `/[${ninpP}]pi_cache_stdin.txt`;
+    if (readOnlyReadyState == false) {
+        window.alert("No file chosen");
+        return;
+    }
     const inp = document.getElementById("stdin").value;
-    const inpP = currentFilePath.split("/");
+    const inpP = currentFilePath.split("\\");
     let ninpP = inpP.pop();
-    let inpF = inpP.join("/") + `/[${ninpP}]pi_cache_stdin.txt`;
+    let inpF = inpP.join("\\") + `\\[${ninpP}]pi_cache_stdin.txt`;
     out.value = "";
     try {
         const output = await window.electron.runPython({

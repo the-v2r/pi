@@ -144,14 +144,28 @@ function handleTerm(val) {
                 value.shift();
                 let rawstd = value.join(" ");
                 let ostd = rawstd.slice(1, rawstd.length - 1);
-                document.getElementById("stdin").value = ostd;
-                writeCmd("`Value ${rawstd} set for stdin`");
+                document.getElementById("stdin").value += ostd + "\n";
+                writeCmd(`Value ${rawstd} added in stdin`);
             } else {
                 switch (value[1]) {
                     case "clear":
                         document.getElementById("stdin").value = "";
                         writeCmd("Stdin cleared!");
+                        break;
+                    case "rml":
+                        let a = document
+                            .getElementById("stdin")
+                            .value.split("\n");
+                        let a1 = a.filter(function (e) {
+                            return e;
+                        });
+                        b = a1.pop();
+                        document.getElementById("stdin").value =
+                            a1.join("\n") + "\n";
+                        writeCmd(`Deleted line "${b}" from stdin.`);
+                        break;
                     default:
+                        writeCmd(`Unsupported stdin function: "${value[1]}"`);
                         break;
                 }
             }

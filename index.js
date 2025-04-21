@@ -41,22 +41,19 @@ app.whenReady().then(() => {
             try {
                 fs.writeFileSync(pyInF, pyIn);
                 const output = await new Promise((resolve, reject) => {
-                    exec(
-                        `${pyData} ${pyP} < ${pyInF}`,
-                        (error, stdout, stderr) => {
-                            if (error) {
-                                reject(`exec error: ${error}`);
-                                return;
-                            }
-                            if (stderr) {
-                                reject(`stderr: ${stderr}`);
-                                return;
-                            }
-                            resolve(stdout);
+                    exec(`py ${pyP} < ${pyInF}`, (error, stdout, stderr) => {
+                        if (error) {
+                            reject(`exec error: ${error}`);
+                            return;
                         }
-                    );
+                        if (stderr) {
+                            reject(`stderr: ${stderr}`);
+                            return;
+                        }
+                        resolve(stdout);
+                    });
                 });
-                fs.unlinkSync(pyInF);
+                // fs.unlinkSync(pyInF);
                 return output;
             } catch (error) {
                 return error;

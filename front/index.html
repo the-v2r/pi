@@ -11,10 +11,24 @@
             href="../node_modules/@xterm/xterm/css/xterm.css"
         />
         <script src="../node_modules/@xterm/xterm/lib/xterm.js"></script>
-        <link rel="stylesheet" href="./style/style.css" />
+        <link rel="stylesheet" href="./style/general.css" />
+        <link rel="stylesheet" href="./style/dropdown.css" />
     </head>
     <body>
-        <div class="toolbar"></div>
+        <div class="toolbar">
+            <div class="toolbar_left">
+                <div class="item" val="File">
+                    <button>Open</button>
+                    <button>Save</button>
+                    <button>Close file</button>
+                    <button>Exit Pi</button>
+                </div>
+                <div class="item" val="Run">
+                    <button>Execute</button>
+                    <button>Run tests</button>
+                </div>
+            </div>
+        </div>
         <div id="main">
             <select id="themeSelector" onchange="changeTheme()"></select>
             <label>
@@ -91,5 +105,6 @@ When you open a file, the mode will be switched to '[INSERT]', press:
         <script src="./script/term.js"></script>
         <script src="./script/execute.js"></script>
         <script src="./script/command.js"></script>
+        <script src="./uiscript/dropdown.js"></script>
     </body>
 </html>

@@ -1,0 +1,23 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 13px;
+    /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+#editor {
+    height: 300px;
+    width: 100%;
+    border: 1px solid #ddd;
+    line-height: 1.5;
+    font-family: monospace, "Courier New", Courier !important;
+}
+
+[hidden] {
+    display: none;
+}

@@ -1,0 +1,45 @@
+.toolbar_left {
+  display: flex;
+}
+.toolbar_left .item {
+  position: relative;
+}
+.toolbar_left .item .listBtn {
+  background-color: transparent;
+  padding: 0 5px;
+  border: none;
+  outline: none;
+  height: 18px;
+}
+.toolbar_left .item .listBtn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.toolbar_left .item .wrapper {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  display: none;
+  flex-direction: column;
+  background-color: #ffffff;
+  width: 150px;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+}
+.toolbar_left .item .wrapper button {
+  display: block;
+  text-align: left;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  height: 18px;
+  padding: 0 15px;
+}
+.toolbar_left .item .wrapper button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.toolbar_left .item .wrapper button:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}/*# sourceMappingURL=dropdown.css.map */
