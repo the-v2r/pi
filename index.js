@@ -17,7 +17,6 @@ require("electron-reload")(__dirname, {
 let mainWindow;
 
 app.whenReady().then(() => {
-    console.log(fileP);
     mainWindow = new BrowserWindow({
         width: 1600,
         height: 1000,
