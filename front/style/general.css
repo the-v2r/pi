@@ -15,7 +15,7 @@ h1 {
     width: 100%;
     border: 1px solid #ddd;
     line-height: 1.5;
-    font-family: monospace, "Courier New", Courier !important;
+    font-family: "Cascadia Code" !important;
 }
 
 [hidden] {

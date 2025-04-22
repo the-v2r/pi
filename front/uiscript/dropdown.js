@@ -16,14 +16,18 @@ document.querySelectorAll(".toolbar_left .item").forEach((a) => {
     const wrapper = a.querySelector(".wrapper");
     itemBtn.addEventListener("mouseover", () => {
         wrapper.style.display = "flex";
+        itemBtn.classList.add("hover");
     });
     itemBtn.addEventListener("mouseleave", () => {
+        itemBtn.classList.remove("hover");
         wrapper.style.display = "none";
     });
     wrapper.addEventListener("mouseover", () => {
         wrapper.style.display = "flex";
+        itemBtn.classList.add("hover");
     });
     wrapper.addEventListener("mouseleave", () => {
         wrapper.style.display = "none";
+        itemBtn.classList.remove("hover");
     });
 });

@@ -6,11 +6,6 @@
         <title>Pi</title>
         <script src="../resource/ace/ace.js"></script>
         <script src="../resource/ace/ext-language_tools.min.js"></script>
-        <link
-            rel="stylesheet"
-            href="../node_modules/@xterm/xterm/css/xterm.css"
-        />
-        <script src="../node_modules/@xterm/xterm/lib/xterm.js"></script>
         <link rel="stylesheet" href="./style/general.css" />
         <link rel="stylesheet" href="./style/dropdown.css" />
     </head>
@@ -25,7 +20,7 @@
                 </div>
                 <div class="item" val="Run">
                     <button>Execute</button>
-                    <button>Run tests</button>
+                    <button id="run">Run tests</button>
                 </div>
             </div>
         </div>
@@ -91,18 +86,13 @@ When you open a file, the mode will be switched to '[INSERT]', press:
                 placeholder="Python command"
                 value="python3"
             />
-            <input type="checkbox" id="toggleTermBtn" />Terminal
             <textarea id="stdout"></textarea>
-            <div id="terminal_container" hidden>
-                <div id="terminal"></div>
-            </div>
         </div>
         <script src="../resource/socketio/socket.io.min.js"></script>
         <script src="./script/theme.js"></script>
         <script src="./script/editor.js"></script>
         <script src="./script/face.js"></script>
         <script src="./script/file.js"></script>
-        <script src="./script/term.js"></script>
         <script src="./script/execute.js"></script>
         <script src="./script/command.js"></script>
         <script src="./uiscript/dropdown.js"></script>

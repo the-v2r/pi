@@ -1,42 +1,53 @@
-.toolbar_left {
-    display: flex;
-    .item {
-        position: relative;
-        .listBtn {
-            background-color: transparent;
-            padding: 0 5px;
-            border: none;
-            outline: none;
-            height: 18px;
-            &:hover {
-                background-color: rgba($color: #000000, $alpha: 0.1);
+.toolbar {
+    background-color: #ece9d8;
+    border-bottom: 1px solid #f1f0eb;
+    .toolbar_left {
+        display: flex;
+        .item {
+            position: relative;
+            * {
+                font-size: 11.5px;
+                font-family: "Tahoma", "Verdana", "Noto Sans", sans-serif;
             }
-        }
-        .wrapper {
-            position: absolute;
-            top: 18px;
-            left: 0;
-            display: none;
-            flex-direction: column;
-            background-color: #ffffff;
-            width: 150px;
-            height: fit-content;
-            border: 1px solid rgba($color: #000000, $alpha: 0.3);
-            z-index: 9999;
-            button {
-                display: block;
-                text-align: left;
-                width: 100%;
+            .listBtn {
                 background-color: transparent;
+                padding: 0 6px;
+                height: 100%;
                 border: none;
                 outline: none;
-                height: 18px;
-                padding: 0 15px;
-                &:hover {
-                    background-color: rgba($color: #000000, $alpha: 0.1);
+                height: 24px;
+                &.hover {
+                    color: #fff;
+                    background-color: #316ac5;
                 }
-                &:not(:last-child) {
-                    border-bottom: 1px solid rgba($color: #000000, $alpha: 0.3);
+            }
+            .wrapper {
+                position: absolute;
+                top: 24px;
+                left: 0;
+                display: none;
+                flex-direction: column;
+                background-color: #ffffff;
+                width: 150px;
+                height: fit-content;
+                border: 1px solid rgba($color: #000000, $alpha: 0.3);
+                z-index: 9999;
+                button {
+                    display: block;
+                    text-align: left;
+                    width: 100%;
+                    background-color: transparent;
+                    border: none;
+                    outline: none;
+                    height: 18px;
+                    padding: 0 15px;
+                    &:hover {
+                        background-color: rgba($color: #000000, $alpha: 0.1);
+                    }
+                    &:not(:last-child) {
+                        border-bottom: 1px solid
+                            rgba($color: #000000, $alpha: 0.3);
+                    }
                 }
             }
         }
