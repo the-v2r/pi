@@ -2,4 +2,4 @@ dist/
 node_modules/
 out/
 
-electron-cache/
+**/electron-cache/
