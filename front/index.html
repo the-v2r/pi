@@ -22,31 +22,84 @@
                 </div>
                 <div class="item" val="Run">
                     <button>Execute</button>
+                    <div class="sep"></div>
                     <button id="run">Run tests</button>
+                </div>
+                <div class="item" val="Windows">
+                    <button>Close</button>
+                </div>
+                <div class="item" val="Help">
+                    <button>Learn more</button>
+                    <button>Website</button>
+                    <div class="sep"></div>
+                    <button id="run">Documentations</button>
                 </div>
             </div>
         </div>
         <div id="main">
-            <select id="themeSelector" onchange="changeTheme()"></select>
-            <label>
-                <input type="checkbox" id="wordWrap" />
-                Word wrapping
-            </label>
-            <label>
-                <input type="checkbox" id="readOnly" />
-                Read-only mode
-            </label>
-            <label>
-                <input type="checkbox" id="showInvisible" />
-                Show White spaces
-            </label>
-            <label>
-                <input type="checkbox" id="showGutter" checked />
-                Show line number
-            </label>
-            <div id="topbar">
-                <button id="uploadBtn" type="button">📂 Open File</button>
-                <button id="saveBtn" type="button" disabled>💾 Save</button>
+            <div class="topbar">
+                <div class="left">
+                    <select
+                        id="themeSelector"
+                        onchange="changeTheme()"
+                    ></select>
+                    <button id="uploadBtn">
+                        <img src="../asset/OpenSelectedItemHS.png" />
+                    </button>
+                    <button id="saveBtn" disabled>
+                        <img src="../asset/saveHS.png" />
+                    </button>
+                    <button id="printBtn">
+                        <img src="../asset/PrintHS.png" />
+                    </button>
+                    <div class="sep"></div>
+                    <button id="startSearchBtn">
+                        <img src="../asset/FindHS.png" />
+                    </button>
+                    <button id="startReplaceBtn">
+                        <img src="../asset/RenameFolderHS.png" />
+                    </button>
+                    <div class="sep"></div>
+                    <button id="cutBtn">
+                        <img src="../asset/CutHS.png" />
+                    </button>
+                    <button id="copyBtn">
+                        <img src="../asset/CopyHS.png" />
+                    </button>
+                    <button id="pasteyBtn">
+                        <img src="../asset/PasteHS.png" />
+                    </button>
+                    <div class="sep"></div>
+                    <button id="fontBtn">
+                        <img src="../asset/FontHS.png" />
+                    </button>
+                    <button id="helpBtn" disabled>
+                        <img src="../asset/Help.png" />
+                    </button>
+                    <div class="sep"></div>
+                    <button id="executeCodeBtn" disabled>
+                        <img src="../asset/FormRunHS.png" />
+                    </button>
+                    <button id="runtestBtn" disabled>
+                        <img src="../asset/compareversionsHS.png" />
+                    </button>
+                </div>
+                <label>
+                    <input type="checkbox" id="wordWrap" />
+                    Word wrapping
+                </label>
+                <label>
+                    <input type="checkbox" id="readOnly" />
+                    Read-only mode
+                </label>
+                <label>
+                    <input type="checkbox" id="showInvisible" />
+                    Show White spaces
+                </label>
+                <label>
+                    <input type="checkbox" id="showGutter" checked />
+                    Show line number
+                </label>
                 <pre id="fileName"></pre>
                 <pre id="lastModified"></pre>
             </div>
@@ -68,17 +121,19 @@ When you open a file, the mode will be switched to '[INSERT]', press:
                          go to '[NORMAL]' mode, here you can apply
                          the same shortcuts as in '[STANDBY]' mode
                          written above.</div>
-            <div id="lineNumber"></div>
-            <div id="cursorPosition"></div>
-            <div id="mode">[STANDBY]</div>
-            <div id="command_container">
+            <div id="command_container" class="cmd_cont">
                 <span id="prompt"></span>
                 <input type="text" id="command" />
             </div>
-            <button id="startSearchBtn">Find</button>
-            <button id="startReplaceBtn">Replace</button>
-            <button id="executeCodeBtn" disabled>Run Code</button>
-            <textarea id="stdin"></textarea>
+            <div class="statusbar">
+                <div id="mode">[STANDBY]</div>
+                <div class="right">
+                    <div id="cursorPosition"></div>
+                    <span>out of</span>
+                    <div id="lineNumber"></div>
+                </div>
+            </div>
+            <!-- <textarea id="stdin"></textarea>
             <input
                 type="text"
                 id="pythonType"
@@ -86,7 +141,7 @@ When you open a file, the mode will be switched to '[INSERT]', press:
                 placeholder="Python command"
                 value="python3"
             />
-            <textarea id="stdout"></textarea>
+            <textarea id="stdout"></textarea> -->
         </div>
         <script src="../resource/socketio/socket.io.min.js"></script>
         <script src="./script/theme.js"></script>
@@ -96,5 +151,6 @@ When you open a file, the mode will be switched to '[INSERT]', press:
         <script src="./script/execute.js"></script>
         <script src="./script/command.js"></script>
         <script src="./uiscript/dropdown.js"></script>
+        <script src="./uiscript/themeSel.js"></script>
     </body>
 </html>

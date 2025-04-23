@@ -9,17 +9,17 @@ const fs = require("fs");
 const path = require("path");
 const { exec } = require("child_process");
 
-require("electron-reload")(__dirname, {
-    electron: require(`${__dirname}/node_modules/electron`),
-    ignored: /.*\.txt|.*\.py/,
-});
+// require("electron-reload")(__dirname, {
+//     electron: require(`${__dirname}/node_modules/electron`),
+//     ignored: /.*\.txt|.*\.py/,
+// });
 
 let mainWindow;
 
 app.whenReady().then(() => {
     mainWindow = new BrowserWindow({
-        width: 1600,
-        height: 1000,
+        width: 800,
+        height: 600,
         autoHideMenuBar: true,
         webPreferences: {
             nodeIntegration: true,
@@ -49,7 +49,7 @@ app.whenReady().then(() => {
                         resolve(stdout);
                     });
                 });
-                // fs.unlinkSync(pyInF);
+                fs.unlinkSync(pyInF);
                 return output;
             } catch (error) {
                 return error;

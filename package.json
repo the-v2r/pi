@@ -36,7 +36,7 @@
     "config": {
         "forge": {
             "packagerConfig": {
-                "electronZipDir": "./electron-cache"
+                "electronZipDir": "./electronCache"
             },
             "makers": [
                 {

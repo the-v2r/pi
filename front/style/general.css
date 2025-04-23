@@ -10,8 +10,8 @@ h1 {
     margin-bottom: 20px;
 }
 #editor {
-    height: 500px;
-    width: 700px;
+    width: 100%;
+    height: calc(100vh - 89px);
 }
 
 [hidden] {

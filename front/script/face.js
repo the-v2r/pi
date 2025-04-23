@@ -14,9 +14,9 @@ toggleReadOnly.addEventListener("click", () => {
 });
 
 const lineNumber = document.getElementById("lineNumber");
-lineNumber.textContent = `Line: ${editor.session.getLength()}`;
+lineNumber.textContent = `${editor.session.getLength()} line(s)`;
 editor.addEventListener("change", () => {
-    lineNumber.textContent = `Line: ${editor.session.getLength()}`;
+    lineNumber.textContent = `${editor.session.getLength()} line(s)`;
 });
 
 const cursorPositionDiv = document.getElementById("cursorPosition");

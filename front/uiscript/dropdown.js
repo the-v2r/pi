@@ -19,6 +19,8 @@ document.querySelectorAll(".toolbar_left .item").forEach((a) => {
     });
     itemBtn.addEventListener("mouseleave", () => {
         itemBtn.classList.remove("hover");
+        itemBtn.classList.remove("focus");
+        wrapper.style.display = "none";
     });
     wrapper.addEventListener("mouseleave", () => {
         wrapper.style.display = "none";
@@ -26,6 +28,11 @@ document.querySelectorAll(".toolbar_left .item").forEach((a) => {
         itemBtn.classList.remove("focus");
     });
     itemBtn.addEventListener("click", () => {
+        itemBtn.classList.remove("hover");
+        itemBtn.classList.add("focus");
+        wrapper.style.display = "flex";
+    });
+    wrapper.addEventListener("mouseover", () => {
         itemBtn.classList.remove("hover");
         itemBtn.classList.add("focus");
         wrapper.style.display = "flex";

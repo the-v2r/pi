@@ -8,6 +8,7 @@
   background-color: #ffffff;
   border-bottom: 1px solid #a0a0a0;
   position: relative;
+  height: 21px;
   padding-bottom: 1px;
 }
 .toolbar::before {
@@ -83,4 +84,116 @@
 }
 .toolbar .toolbar_left .item .wrapper button:hover {
   background-color: #90c8f6;
+}
+
+.topbar {
+  border-top: 1px solid #ffffff;
+  background-color: #f0f0f0;
+  padding: 3px;
+  display: flex;
+  height: 29px;
+}
+.topbar * {
+  font-size: 11.5px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.topbar #themeSelector {
+  background-color: #e1e1e1;
+  border: 1px solid #adadad;
+  outline: none;
+  height: 22px;
+  width: 60px;
+  text-overflow: ellipsis;
+}
+.topbar #themeSelector:hover {
+  background-color: #e5f1fb;
+  border-color: #0078d7;
+}
+.topbar #themeSelector::-webkit-scrollbar {
+  display: none;
+}
+.topbar .left {
+  display: flex;
+  align-items: center;
+}
+.topbar .left button {
+  padding: 2px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  outline: 1px solid transparent;
+  display: block;
+  cursor: pointer;
+}
+.topbar .left button img {
+  display: block;
+}
+.topbar .left button:hover {
+  background-color: #e5f3ff;
+  border: 1px solid #cce8ff;
+}
+.topbar .left button:active {
+  background-color: #cce8ff;
+  border: 1px solid #99d1ff;
+}
+.topbar .left .sep {
+  height: 20px;
+  width: 1px;
+  background-color: #848484;
+  margin: 0 3px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.cmd_cont {
+  border-bottom: 1px solid #f2f2f2;
+  display: flex;
+  align-items: center;
+}
+.cmd_cont * {
+  font-family: "fixedsys";
+  font-size: 16px;
+  display: block;
+}
+.cmd_cont input {
+  border: 0;
+  outline: 0;
+}
+.cmd_cont span {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.statusbar {
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #a0a0a0;
+  background-color: #f0f0f0;
+  padding: 3px;
+  position: relative;
+}
+.statusbar::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  height: 2px;
+  width: 100%;
+}
+.statusbar * {
+  font-size: 11.5px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.statusbar .right {
+  display: flex;
+  gap: 5px;
+}
+.statusbar #mode {
+  font-weight: 700;
 }/*# sourceMappingURL=dropdown.css.map */

@@ -66,8 +66,8 @@ async function handleSaveBtn() {
     const now = new Date();
     writeCmd(
         `Updated '${currentFilePath}': ${
-            lineNumber.textContent.split(": ")[1]
-        } line(s) written [${now.toLocaleString("en-GB")}]`
+            lineNumber.textContent
+        } written [${now.toLocaleString("en-GB")}]`
     );
     isSaved = true;
 }
