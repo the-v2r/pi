@@ -2,7 +2,6 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-size: 13px;
     /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
 }
 
@@ -11,11 +10,8 @@ h1 {
     margin-bottom: 20px;
 }
 #editor {
-    height: 300px;
-    width: 100%;
-    border: 1px solid #ddd;
-    line-height: 1.5;
-    font-family: "Cascadia Code" !important;
+    height: 500px;
+    width: 700px;
 }
 
 [hidden] {

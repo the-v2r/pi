@@ -8,6 +8,8 @@ editor.setOptions({
     enableBasicAutocompletion: true,
     enableLiveAutocompletion: true,
     enableSnippets: true,
+    fontFamily: "fixedsys",
+    fontSize: "16px",
 });
 
 editor.focus();
